@@ -60,4 +60,24 @@ class Building
     annual_breakdown
   end
 
+  def bedrooms_bathrooms
+    bedrooms_bathrooms = Hash.new {|hash, key| hash[key] = 0}
+    rented_units.each do |unit|
+      bedrooms_bathrooms[:bathrooms] = unit.bathrooms
+      bedrooms_bathrooms[:bedrooms] = unit.bedrooms
+    end
+    bedrooms_bathrooms
+  end
+
+  def rooms_by_renter
+    rooms_by_renter = Hash.new {|hash, key| hash[key] = {}}
+    @units.each do |unit|
+      if unit.renter != nil
+        rooms_by_renter[unit.renter] = bedrooms_bathrooms
+      end
+    end
+    rooms_by_renter
+  end
+
+
 end
