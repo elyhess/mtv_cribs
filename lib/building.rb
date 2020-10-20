@@ -27,4 +27,12 @@ class Building
     total_unit_price / units.count.to_f
   end
 
+  def rented_units
+    @units.select do |unit|
+      if unit.renter != nil
+        renters << unit.renter
+      end
+    end
+  end
+
 end
