@@ -1,12 +1,22 @@
 class Building
-  attr_reader :units
+  attr_reader :units, :renters  # => nil
 
   def initialize
     @units = []
-  end
+  end             # => :initialize
 
   def add_unit(apartment)
     @units << apartment
-  end
+  end                      # => :add_unit
 
-end
+  def renters
+    renters = []
+    @units.map do |unit|
+      if unit.renter != nil
+        renters << unit.renter.name
+      end
+    end
+    renters
+  end                         # => :renters
+
+end  # => :renters
